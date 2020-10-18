@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import axios from "axios";
 import Post from "./components/Post/Post";
+import firebase from '@firebase/app'
+import { useAuthState } from 'react-firebase-hooks/auth';
+
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -14,7 +17,7 @@ function App() {
   useEffect(() => {
     axios.get("https://jsonplaceholder.typicode.com/posts").then((response) => {
       setPosts(response.data);
-      console.log("Got it");
+      console.log("Got it!");
     })
   }, []);
 
@@ -25,7 +28,10 @@ function App() {
       <ul>
       {posts.map(post => {
         return (
-          <li id={post.id}>{post.title}</li>
+          <>
+          <Post id={post.id} title={post.title} /><p>{post.body}</p>
+          {/* <li id={post.id}>{post.title}</li> */}
+          </>
         )
 
       })}
