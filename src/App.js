@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import axios from "axios";
 import Post from "./components/Post/Post";
-import firebase from '@firebase/app'
+import Posts from './components/Posts/Posts';
+import firebase from '@firebase/app';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 
