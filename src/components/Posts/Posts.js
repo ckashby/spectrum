@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Post from '../Post/Post';
 
@@ -13,8 +14,9 @@ function Posts() {
   }, []);
 
   return (
-    <div>
+    <>
       <h2>Posts</h2>
+      <Link to="/">Home</Link>
       <ul>
       {posts.map(post => {
         return (
@@ -24,7 +26,7 @@ function Posts() {
         )
       })}
       </ul>
-    </div>
+    </>
   )
 }
 
