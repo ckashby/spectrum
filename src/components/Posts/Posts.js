@@ -21,7 +21,8 @@ function Posts() {
       {posts.map(post => {
         return (
           <>
-          <Post id={post.id} title={post.title} /><p>{post.body}</p>
+          {/* <Post id={post.id} title={post.title} /><p>{post.body}</p> */}
+          <li key={post.id}>{post.title}</li>
           </>
         )
       })}

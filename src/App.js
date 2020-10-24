@@ -1,23 +1,27 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import firebase from '@firebase/app';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import firebase from "@firebase/app";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 import "./App.css";
-import HomePage from './components/pages/HomePage';
-import Posts from './components/Posts/Posts';
-import Albums from './components/Albums/Albums';
+import MenuPage from "./components/pages/MenuPage";
+import Posts from "./components/Posts/Posts";
+import Albums from "./components/Albums/Albums";
+import Users from "./components/Users/Users";
 
 function App() {
   return (
     <>
-    <BrowserRouter>
-    <Route path="/" exact component={HomePage} />
-    <Route path="/posts" exact component={Posts} />
-    <Route path="/albums" exact component={Albums} />
-    </BrowserRouter>
+      <BrowserRouter>
+        {/* <Switch> */}
+        <MenuPage />
+        <Route path="/posts" exact component={Posts} />
+        <Route path="/albums" exact component={Albums} />
+        <Route path="/users" exact component={Users} />
+        {/* </Switch> */}
+      </BrowserRouter>
     </>
-  )
+  );
 }
 
 export default App;
