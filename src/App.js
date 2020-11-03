@@ -42,14 +42,14 @@ function App() {
         height="size-6000"
         gap="size-10"
       >
-        <View backgroundColor="celery-600" gridArea="header">
+        <View backgroundColor="yellow-400" gridArea="header">
           Logo Link to Home. <Button variant="cta">Products</Button>{" "}
           <Button variant="primary">Services</Button>{" "}
           <Button variant="secondary">About Us</Button>{" "}
           <Button variant="negative">Contact</Button>{" "}
           <Button variant="overBackground">Careers</Button>
         </View>
-        <View backgroundColor="blue-600" gridArea="sidebar">
+        <View backgroundColor="chartreuse-400" gridArea="sidebar">
           Main Menu
           <br />
           Sidebar
@@ -71,7 +71,11 @@ function App() {
                 </Heading>
                 <Header>
                   <Link>
-                    <a href="//example.com" target="_blank">
+                    <a
+                      href="//example.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       What is this?
                     </a>
                   </Link>
@@ -172,10 +176,32 @@ function App() {
               </Dialog>
             )}
           </DialogTrigger>
+          <DialogTrigger>
+            <ActionButton>Check connectivity</ActionButton>
+            {(close) => (
+              <Dialog>
+                <Heading>Internet Speed Test</Heading>
+                <Header>Connection status: Connected</Header>
+                <Divider />
+                <Content>
+                  <Text>Start my speed test?</Text>
+                </Content>
+                <ButtonGroup>
+                  <Button variant="secondary" onPress={close}>
+                    Cancel
+                  </Button>
+                  <Button variant="cta" onPress={close}>
+                    Confirm
+                  </Button>
+                </ButtonGroup>
+              </Dialog>
+            )}
+          </DialogTrigger>
+          <hr />
         </View>
-        <View backgroundColor="magenta-600" gridArea="footer" />
+        <View backgroundColor="celery-500" gridArea="footer" />
         <Footer gridArea="footer" justifySelf="center">
-          &copy; All rights reserved.
+          <b>&copy; All rights reserved.</b>
         </Footer>
       </Grid>
 
