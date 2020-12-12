@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
+import NotFound from "@spectrum-icons/illustrations/NotFound";
+import Upload from "@spectrum-icons/illustrations/Upload";
+import Unauthorized from "@spectrum-icons/illustrations/Unauthorized";
 import {
+  // appSettings,
   ActionButton,
   // Book,
   Button,
   ButtonGroup,
   Checkbox,
   Content,
+  darkTheme,
   defaultTheme,
   Dialog,
   DialogTrigger,
@@ -16,48 +21,73 @@ import {
   Grid,
   Header,
   Heading,
+  IllustratedMessage,
   Image,
+  Item,
   Link,
+  Picker,
   Provider,
+  Radio,
+  RadioGroup,
   Text,
   TextField,
   View,
 } from "@adobe/react-spectrum";
 
 function App() {
+  const [email, setEmail] = useState("");
+
   let alertSave = (close) => {
     close();
     alert("Profile saved!");
   };
+
   let alertCancel = (close) => {
     close();
     alert("Profile not saved!");
   };
+
   return (
-    <Provider theme={defaultTheme}>
+    <Provider
+      theme={defaultTheme}
+      colorScheme="light"
+      // locale={appSettings.locale}
+    >
       <Grid
         areas={["header  header", "sidebar content", "footer  footer"]}
         columns={["1fr", "3fr"]}
-        rows={["size-1000", "auto", "size-1000"]}
-        height="size-6000"
-        gap="size-10"
+        rows={["size-700", "auto", "size-2200"]}
+        height="size-8000"
+        gap="size-100"
       >
-        <View backgroundColor="yellow-400" gridArea="header">
-          Logo Link to Home. <Button variant="cta">Products</Button>{" "}
-          <Button variant="primary">Services</Button>{" "}
-          <Button variant="secondary">About Us</Button>{" "}
-          <Button variant="negative">Contact</Button>{" "}
-          <Button variant="overBackground">Careers</Button>
+        <View gridArea="header">
+          AshbyLogo.png <Button variant="cta">Home</Button>{" "}
+          <Button variant="cta">About Us</Button>{" "}
+          <Button variant="cta">Services</Button>{" "}
+          <Button variant="cta">Contact Us</Button>
         </View>
-        <View backgroundColor="chartreuse-400" gridArea="sidebar">
-          Main Menu
-          <br />
-          Sidebar
-          <br />
-          gridArea
+        <View gridArea="sidebar">
+          <Flex direction="column" gap="size-300" alignItems="start">
+            <Provider isQuiet>
+              <TextField
+                label="Email"
+                placeholder="hello@example.com"
+                value={email}
+                onChange={setEmail}
+              />
+              <Picker label="Favorite Pet">
+                <Item key="bird">Bird</Item>
+                <Item key="cat">Cat</Item>
+                <Item key="dog">Dog</Item>
+                <Item key="fish">Fish</Item>
+              </Picker>
+            </Provider>
+            <Button variant="primary">Submit</Button>
+          </Flex>
         </View>
-        <View backgroundColor="purple-600" gridArea="content">
-          <Button variant="overBackground">Sign In</Button>{" "}
+        <View gridArea="content">
+          <Button variant="overBackground">Sign In</Button>
+          <br />
           {/* <Button variant="cta">Sign Up</Button>{" "} */}
           <DialogTrigger>
             <ActionButton>Register</ActionButton>
@@ -83,11 +113,7 @@ function App() {
                 <Divider />
                 <Content>
                   <Form>
-                    <TextField
-                      label="First Name"
-                      placeholder="John"
-                      autoFocus
-                    />
+                    <TextField label="First Name" placeholder="Joe" autoFocus />
                     <TextField label="Last Name" placeholder="Smith" />
                     <TextField
                       label="Street Address"
@@ -137,15 +163,6 @@ function App() {
               </Dialog>
             )}
           </DialogTrigger>
-          <DialogTrigger isDismissable>
-            <ActionButton>Status</ActionButton>
-            <Dialog>
-              <Heading>Your Current Status</Heading>
-              <Divider />
-              <Divider />
-              <Content>Printer Status: Connected</Content>
-            </Dialog>
-          </DialogTrigger>
           <DialogTrigger>
             <ActionButton>Set Profile</ActionButton>
             {(close) => (
@@ -177,46 +194,60 @@ function App() {
             )}
           </DialogTrigger>
           <DialogTrigger>
-            <ActionButton>Check connectivity</ActionButton>
+            <ActionButton>Publish</ActionButton>
             {(close) => (
               <Dialog>
-                <Heading>Internet Speed Test</Heading>
-                <Header>Connection status: Connected</Header>
+                <Heading>Publish 3 pages</Heading>
                 <Divider />
-                <Content>
-                  <Text>Start my speed test?</Text>
-                </Content>
+                <Content>Confirm publish?</Content>
                 <ButtonGroup>
                   <Button variant="secondary" onPress={close}>
                     Cancel
                   </Button>
-                  <Button variant="cta" onPress={close}>
+                  <Button variant="cta" onPress={close} autoFocus>
                     Confirm
+                  </Button>
+                  <Button variant="primary" onPress={() => alert("Howzit?")}>
+                    Aloha
                   </Button>
                 </ButtonGroup>
               </Dialog>
             )}
           </DialogTrigger>
+          <DialogTrigger isDismissable>
+            <ActionButton>Status</ActionButton>
+            <Dialog>
+              <Heading>Status</Heading>
+              <Divider />
+              <Content>Printer Status: Connected</Content>
+            </Dialog>
+          </DialogTrigger>
           <hr />
+          <Form>
+            <TextField label="First Name" placeholder="Jonny" autoFocus />
+            <TextField label="Last Name" placeholder="Smith" />
+            <TextField label="Street Address" placeholder="123 Any Street" />
+            <TextField label="City" placeholder="San Francisco" />
+            <Button variant="cta" onPress={() => alert("Hola amigos")}>
+              Sign Out
+            </Button>
+          </Form>
         </View>
-        <View backgroundColor="celery-500" gridArea="footer" />
+        <View backgroundColor="orange-400" gridArea="footer" />
         <Footer gridArea="footer" justifySelf="center">
           <b>&copy; All rights reserved.</b>
+          <IllustratedMessage>
+            When an IllustratedMessage has a svg and a Heading, the svg needs an
+            aria-hidden prop and a role prop set to presentation.
+            <Upload role="presentation" aria-label="Upload file icon" />
+            <Heading>Drag and Drop your file</Heading>
+            <Content>
+              Select a File from your computer
+              <br /> or Search Adobe Stock
+            </Content>
+          </IllustratedMessage>
         </Footer>
       </Grid>
-
-      {/* <hr />
-      <Flex direction="column" width="size-2000" gap="size-100">
-        <View backgroundColor="celery-600" height="size-800">
-          <Button variant="overBackground">Hola Amigos</Button>
-        </View>
-        <View backgroundColor="blue-600" height="size-800">
-          <Button variant="primary">Bonjour mon amis</Button>
-        </View>
-        <View backgroundColor="magenta-600" height="size-800">
-          <Button variant="secondary">Bonjour mon amis</Button>
-        </View>
-      </Flex> */}
     </Provider>
   );
 }
