@@ -215,6 +215,16 @@ function App() {
             )}
           </DialogTrigger>
           <DialogTrigger isDismissable>
+            <ActionButton>Create Blog Post</ActionButton>
+            {(close) => (
+              <Dialog>
+                <Heading>Publish 9 pages to Blog?</Heading>
+                <Divider />
+                <Content>Confirm publish?</Content>
+              </Dialog>
+            )}
+          </DialogTrigger>
+          <DialogTrigger isDismissable>
             <ActionButton>Status</ActionButton>
             <Dialog>
               <Heading>Status</Heading>
@@ -228,8 +238,11 @@ function App() {
             <TextField label="Last Name" placeholder="Smith" />
             <TextField label="Street Address" placeholder="123 Any Street" />
             <TextField label="City" placeholder="San Francisco" />
-            <Button variant="cta" onPress={() => alert("Hola amigos")}>
-              Sign Out
+            <Button
+              variant="cta"
+              onPress={() => alert("You registered successfully.")}
+            >
+              Register
             </Button>
           </Form>
         </View>
